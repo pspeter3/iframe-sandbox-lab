@@ -139,5 +139,19 @@
         <button type="submit">Submit</button>
       </form>
     </main>
+    <script>
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has("url")) {
+        const url = searchParams.get("url");
+        const sandbox = searchParams.getAll("sandbox");
+        const iframe = document.createElement("iframe");
+        iframe.sandbox = sandbox.join(" ");
+        iframe.src = url;
+        iframe.style.width = "100%";
+        iframe.style.height = "100vh";
+        document.getElementById("sandbox-form").remove();
+        document.body.appendChild(iframe);
+      }
+    </script>
   </body>
 </html>
